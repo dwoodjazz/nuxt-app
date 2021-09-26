@@ -1,10 +1,10 @@
 <template>
   <!-- <Tutorial/> -->
   <div>
-    <h1>Hello World</h1>
-    <button class="butt1" @click="increment">+</button>
-    {{count}}
+    <h1>Sam was here</h1>
     <button class="butt2" @click="count-=7">-</button>
+    {{count}}
+    <button class="butt1" @click="increment">+</button>
 
   </div>
 </template>
