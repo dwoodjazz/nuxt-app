@@ -2,15 +2,16 @@
   <!-- <Tutorial/> -->
   <div>
     <div class="hero">
-    <h1>A simple counter</h1>
+    <h1>A simple calculator</h1>
     </div>
-
+  <div class="calculatorBox">
     <div class="unitCostBox"> 
       <div class="unitCostItem costHeader" id="CPU">COST PER UNIT</div>
       <div class="unitCostItem costAmount" id="CPUdisplay" >$175.50</div>
     </div>
     <div class="incrementsBox">
-      <button class="button2" @click="count-=7">-</button>
+      <h3 class="incTitle"># of units</h3>
+      <button class="button2" @click="decrement">-</button>
       <div class="count">
       {{count}}
       </div>
@@ -18,8 +19,9 @@
     </div>
     <div class="totalCostBox">
       <div class="totalCostItem costHeader" id="total">TOTAL COST</div>
-      <div class="totalCostItem costAmount" id="totalDisplay">total cost goes here</div>
+      <div class="totalCostItem costAmount" id="totalDisplay">${{(count*175.50).toFixed(2)}}</div>
     </div>
+  </div>
   </div>
 </template>
 
@@ -33,6 +35,12 @@ export default {
   methods: {
     increment() {
       this.count++
+    },
+    decrement() {
+      this.count--
+    },
+    computeTotalCost() {
+        count*175.50
     }
   }
 }
@@ -53,34 +61,35 @@ export default {
 h1 {
   padding: 2rem 0rem;
 }
+.calculatorBox {
+  display: flexbox;
+  width: 100%;
+}
 .incrementsBox   {
-  width: 15%;
-  height: 10rem;
-  align-content: center;
+  height: auto;
   margin: 0 2rem 0 2rem;
+
   /* border-style: solid;
   border-color:hotpink; */
 }
 
 .unitCostBox {
   background-color: rgba(109, 245, 200);
-  height: 10rem;
-  width: 30%;
-  /* margin: 1rem 2rem 3rem; */
-  align-items: center;
+  height: auto;
+  width: 35%;
 
   /* border-style: solid;
   border-color:hotpink; */
 
 }
 .totalCostBox {
+  /* flex-basis: 2fr; */
   background-color: rgb(183, 138, 226);
-  height: 10rem;
-  width: 30%;
+  height: auto;
+  width: 35%;
 
   /* border-style: solid;
   border-color:hotpink; */
-  /* margin: 3rem 2rem; */
 }
 
 #CPU, #CPUdisplay{
@@ -91,8 +100,13 @@ h1 {
   background-color: rgb(183, 138, 226);
 }
 
+.incTitle {
+  text-align: center;
+  color: honeydew;
+  width: 100%;
+}
+
   .button1 {
-    /* display: flex-box; */
     border-style: solid;
     border-color: honeydew;
     border-radius: 2rem;
@@ -108,11 +122,9 @@ h1 {
     width: 3rem;
     color: black;
     background-color: honeydew;
-    /* margin: 1rem 0rem; */
 
   }
   .button2 {
-    /* display: flex-box; */
     border-style: solid;
     border-color: honeydew;
     border-radius: 2rem;
@@ -137,7 +149,5 @@ h1 {
   height:auto;
   width: 90%;
 }
-
- 
 
 </style>
