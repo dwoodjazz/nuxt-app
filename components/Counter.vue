@@ -29,13 +29,13 @@
     <div class="simpleInput">
       <div class="inputBox">
         <label for="zipCode">Type your zip code here</label>
-        <input type="text" id="zipEntry" name="zip" required
+        <input type="text" id="zipEntry" name="zip" value="83814" required
        minlength="5" maxlength="5" size="10">
       </div>
 
       <div class="stateBox">
         <div class="state">STATE</div>
-        <div id="stateResult" >{{zipToState}}</div>
+        <div id="stateResult" >{{zipToState(zipcode)}}</div>
       </div>
     </div>
   </div>
@@ -45,7 +45,9 @@
 export default {
   data () {
     return {
-      count: 10
+      count: 10,
+      zipcode: document.getElementById("zipEntry"),
+      // zipcode: 56554
     } 
   },
   methods: {
@@ -58,9 +60,10 @@ export default {
     computeTotalCost() {
         count*175.50
     },
-    zipToState(zipEntry){
-          /* Zipcode cases alphabetized by state */
-          let zipcode=document.getElementById(zipEntry);
+    zipToState(zipcode) {
+          /* Zipcode cases alphabetized by state */ 
+          let st="st";
+          let state = "state";
       if (zipcode >= 35000 && zipcode <= 36999) {
           st = 'AL';
           state = 'Alabama';
@@ -223,8 +226,7 @@ export default {
           console.log('No state found matching', zipcode);
       }
 
-      return st;
-      
+      return st
     }
   }
 }
@@ -378,7 +380,7 @@ h1 {
 }
 
 .state {
-
+  text-align: start;
 }
 #stateResult {
   font-size: 3rem;
