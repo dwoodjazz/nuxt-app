@@ -28,14 +28,15 @@
     </div>
     <div class="simpleInput">
       <div class="inputBox">
-        <label for="zipCode">Type your zip code here</label>
-        <input type="text" id="zipEntry" name="zip" value="83814" required
+        <label for="zipEntry">Type your zip code here</label>
+        <input type="text" id="zipEntry" v-model="zipcode" name="zip" value="83814" required
        minlength="5" maxlength="5" size="10">
       </div>
 
       <div class="stateBox">
         <div class="state">STATE</div>
         <div id="stateResult" >{{zipToState(zipcode)}}</div>
+        <div>{{stateImage}}</div>
       </div>
     </div>
   </div>
@@ -44,10 +45,9 @@
 <script>
 export default {
   data () {
-    return {
+    return {  
       count: 10,
-      zipcode: document.getElementById("zipEntry"),
-      // zipcode: 56554
+      zipcode: '83814'
     } 
   },
   methods: {
@@ -56,14 +56,13 @@ export default {
     },
     decrement() {
       this.count--
-    },
-    computeTotalCost() {
-        count*175.50
-    },
+    },  
+    
     zipToState(zipcode) {
           /* Zipcode cases alphabetized by state */ 
           let st="st";
           let state = "state";
+          let stateImage = "image";
       if (zipcode >= 35000 && zipcode <= 36999) {
           st = 'AL';
           state = 'Alabama';
@@ -100,6 +99,7 @@ export default {
       } else if (zipcode >= 83200 && zipcode <= 83999) {
           st = 'ID';
           state = 'Idaho';
+          stateImage="/Users/douglaswood/Desktop/Coding/nuxt-app/components/resources/idahoOutline.png"
       } else if (zipcode >= 60000 && zipcode <= 62999) {
           st = 'IL';
           state = 'Illinois';
@@ -225,7 +225,7 @@ export default {
           state = 'none';
           console.log('No state found matching', zipcode);
       }
-
+    
       return st
     }
   }
@@ -341,10 +341,11 @@ h1 {
 
 .simpleInput {
   display:flex;
-  height: 300px;
+  height: 200px;
   width: 100%;
-  border-style: solid;
-  border-color:darkgreen; 
+  margin: 0 0 2% 0;
+  /* border-style: solid;
+  border-color:darkgreen;  */
   align-content: center;
   justify-content: space-around;
 }
@@ -369,11 +370,11 @@ h1 {
   border-style: solid;
   border-color:hotpink; 
   align-items: center;
- justify-content: center;
+ justify-content: space-between;
 }
 
 #zipEntry {
-  border-style: ridge;
+  border-style: solid;
   border-color: honeydew;
   height: 2rem;
   margin: 1rem;
@@ -381,8 +382,11 @@ h1 {
 
 .state {
   text-align: start;
+  margin: 0 0 0 3rem;
 }
 #stateResult {
-  font-size: 3rem;
+  font-size: 6rem;
+
+  margin: 0 6rem 0 0;
 }
 </style>
